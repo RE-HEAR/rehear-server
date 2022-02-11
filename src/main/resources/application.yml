@@ -4,8 +4,8 @@ spring:
       matching-strategy: ant_path_matcher
   datasource:
     url: 'jdbc:mysql://localhost:3306/rehear?useUnicode=true&serverTimezone=Asia/Seoul'
-    username: 'root'
-    password: '0000'
+    username:
+    password:
   jpa:
     hibernate:
       ddl-auto: create
@@ -14,3 +14,5 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         show_sql: true
         format_sql: true
+jwt:
+  secret:
