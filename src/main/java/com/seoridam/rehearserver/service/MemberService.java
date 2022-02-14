@@ -22,6 +22,10 @@ public class MemberService {
     public void join(JoinRequestDto dto){
         if(!dto.getPassword().equals(dto.getCheckPassword()))
             throw new IllegalArgumentException("비밀번호 확인이 되지 않았습니다.");
+        if(isDuplicatedEmail(dto.getEmail()))
+            throw new IllegalArgumentException("이미 등록된 메일입니다.");
+        if(isDuplicatedNickname(dto.getNickname()))
+            throw new IllegalArgumentException("이미 등록된 닉네임입니다.");
         Member member = Member.builder()
                 .email(dto.getEmail())
                 .password(passwordEncoder.encode(dto.getPassword()))
@@ -36,20 +40,22 @@ public class MemberService {
         memberRepository.save(member);
     }
 
-    public void isDuplicatedEmail(String email){
-        boolean isDuplicated = memberRepository.findByEmail(email).isPresent();
-        if (isDuplicated) {
-            throw new IllegalArgumentException("이미 등록된 메일입니다.");
-        }
+    public void checkDuplicatedEmail(String email){
+        if(isDuplicatedEmail(email))
+            throw new IllegalArgumentException("이미 등록된 이메일입니다.");
     }
 
-    public void isDuplicatedNickname(String nickname){
-        boolean isDuplicated = memberRepository.findByNickname(nickname).isPresent();
+    public void checkDuplicatedNickname(String nickname){
+        if(isDuplicatedNickname(nickname))
+            throw new IllegalArgumentException("이미 등록된 닉네임입니다.");
+    }
 
-        if (isDuplicated) {
-            throw new IllegalArgumentException("이미 사용중인 닉네임입니다.");
-        }
+    public boolean isDuplicatedEmail(String email){
+        return memberRepository.findByEmail(email).isPresent();
+    }
 
+    public boolean isDuplicatedNickname(String nickname){
+        return memberRepository.findByNickname(nickname).isPresent();
     }
 
     public String login(LoginRequestDto loginRequestDto){
