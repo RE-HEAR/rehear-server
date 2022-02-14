@@ -22,7 +22,7 @@ import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
-public class MemberServiceTest {
+public class JwtLoginServiceTest {
 
     @InjectMocks
     private MemberService memberService;
