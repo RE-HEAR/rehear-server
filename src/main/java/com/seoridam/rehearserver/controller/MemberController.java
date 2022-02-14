@@ -3,12 +3,13 @@ package com.seoridam.rehearserver.controller;
 import com.seoridam.rehearserver.dto.JoinRequestDto;
 import com.seoridam.rehearserver.dto.LoginRequestDto;
 import com.seoridam.rehearserver.global.common.StatusEnum;
+import com.seoridam.rehearserver.global.common.SuccessResponse;
 import com.seoridam.rehearserver.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
+import static com.seoridam.rehearserver.global.common.StatusEnum.CREATED;
 import static com.seoridam.rehearserver.global.common.StatusEnum.OK;
 
 @RestController
@@ -17,11 +18,10 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/join")
-    public StatusEnum signUp(@Valid @RequestBody final JoinRequestDto joinRequestDto) {
+    public StatusEnum join(@Valid @RequestBody final JoinRequestDto joinRequestDto) {
         memberService.join(joinRequestDto);
-        return OK;
+        return CREATED;
     }
 
     @GetMapping("/duplicated/email/{email}")
@@ -37,7 +37,12 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid @RequestBody final LoginRequestDto loginRequestDto) {
-        return memberService.login(loginRequestDto);
+    public SuccessResponse login(@Valid @RequestBody final LoginRequestDto loginRequestDto) {
+        String token = memberService.login(loginRequestDto);
+        return SuccessResponse.builder()
+                .status(OK)
+                .message("로그인 성공")
+                .data(token)
+                .build();
     }
 }

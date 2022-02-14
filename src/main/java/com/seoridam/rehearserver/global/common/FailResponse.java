@@ -1,7 +1,9 @@
 package com.seoridam.rehearserver.global.common;
 
 import lombok.Builder;
+import lombok.Getter;
 
+@Getter
 public class FailResponse {
 
     private StatusEnum status;
