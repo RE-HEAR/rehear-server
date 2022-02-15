@@ -29,15 +29,13 @@ public class MemberController {
     }
 
     @GetMapping("/duplicated/email/{email}")
-    public StatusEnum isDuplicatedEmail(@PathVariable String email) {
+    public void isDuplicatedEmail(@PathVariable String email) {
         memberService.checkDuplicatedEmail(email);
-        return OK;
     }
 
     @GetMapping("duplicated/nickname/{nickname}")
-    public StatusEnum isDuplicatedNickname(@PathVariable String nickname) {
+    public void isDuplicatedNickname(@PathVariable String nickname) {
         memberService.checkDuplicatedNickname(nickname);
-        return OK;
     }
 
     @PostMapping("/login")
