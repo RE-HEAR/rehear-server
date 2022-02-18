@@ -3,6 +3,7 @@ package com.seoridam.rehearserver.domain;
 import com.seoridam.rehearserver.global.common.JobEnum;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,9 +14,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Setter
 @Getter
 @Entity
-public class Member implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,12 +52,12 @@ public class Member implements UserDetails {
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
-    public Member() {
+    public User() {
 
     }
 
     @Builder
-    public Member(Long id, String email, String password, String nickname, String name, int age, boolean ventureBefore, JobEnum job, String businessCategory, List<String> roles){
+    public User(Long id, String email, String password, String nickname, String name, int age, boolean ventureBefore, JobEnum job, String businessCategory, List<String> roles){
         this.id = id;
         this.email = email;
         this.password = password;

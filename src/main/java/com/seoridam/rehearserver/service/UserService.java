@@ -1,8 +1,8 @@
 package com.seoridam.rehearserver.service;
 
-import com.seoridam.rehearserver.domain.Member;
+import com.seoridam.rehearserver.domain.User;
 import com.seoridam.rehearserver.dto.JoinRequestDto;
-import com.seoridam.rehearserver.repository.MemberRepository;
+import com.seoridam.rehearserver.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,9 +11,9 @@ import java.util.Collections;
 
 @RequiredArgsConstructor
 @Service
-public class MemberService {
+public class UserService {
 
-    private final MemberRepository memberRepository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     public void join(JoinRequestDto dto){
@@ -23,7 +23,7 @@ public class MemberService {
             throw new IllegalArgumentException("이미 등록된 메일입니다.");
         if(isDuplicatedNickname(dto.getNickname()))
             throw new IllegalArgumentException("이미 등록된 닉네임입니다.");
-        Member member = Member.builder()
+        User user = User.builder()
                 .email(dto.getEmail())
                 .password(passwordEncoder.encode(dto.getPassword()))
                 .nickname(dto.getNickname())
@@ -34,7 +34,7 @@ public class MemberService {
                 .businessCategory(dto.getBusinessCategory())
                 .roles(Collections.singletonList("ROLE_MEMBER"))
                 .build();
-        memberRepository.save(member);
+        userRepository.save(user);
     }
 
     public void checkDuplicatedEmail(String email){
@@ -48,10 +48,10 @@ public class MemberService {
     }
 
     public boolean isDuplicatedEmail(String email){
-        return memberRepository.findByEmail(email).isPresent();
+        return userRepository.findByEmail(email).isPresent();
     }
 
     public boolean isDuplicatedNickname(String nickname){
-        return memberRepository.findByNickname(nickname).isPresent();
+        return userRepository.findByNickname(nickname).isPresent();
     }
 }
