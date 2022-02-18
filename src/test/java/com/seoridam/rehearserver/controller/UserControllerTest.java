@@ -2,7 +2,7 @@ package com.seoridam.rehearserver.controller;
 
 import com.seoridam.rehearserver.dto.JoinRequestDto;
 import com.seoridam.rehearserver.dto.LoginRequestDto;
-import com.seoridam.rehearserver.fixture.MemberFixture.*;
+import com.seoridam.rehearserver.fixture.UserFixture.*;
 import com.seoridam.rehearserver.global.common.RegistrationPathEnum;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,22 +13,22 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-public class MemberControllerTest extends ControllerTest {
+public class UserControllerTest extends ControllerTest {
 
     @DisplayName("이메일과 닉네임이 중복된 회원이 아니라면 회원 가입에 성공한다.")
     @Test
     void join() throws Exception {
         // given
         final JoinRequestDto dto = JoinRequestDto.builder()
-                .name(Member1.NAME)
-                .email(Member1.EMAIL)
-                .password(Member1.PASSWORD)
-                .checkPassword(Member1.PASSWORD)
-                .nickname(Member1.NICKNAME)
-                .age(Member1.AGE)
-                .ventureBefore(Member1.VENTURE_BEFORE)
-                .job(Member1.JOB)
-                .businessCategory(Member1.BUSINESS_CATEGORY)
+                .name(User1.NAME)
+                .email(User1.EMAIL)
+                .password(User1.PASSWORD)
+                .checkPassword(User1.PASSWORD)
+                .nickname(User1.NICKNAME)
+                .age(User1.AGE)
+                .ventureBefore(User1.VENTURE_BEFORE)
+                .job(User1.JOB)
+                .businessCategory(User1.BUSINESS_CATEGORY)
                 .registrationPath(RegistrationPathEnum.BLOG)
                 .build();
 
@@ -49,28 +49,28 @@ public class MemberControllerTest extends ControllerTest {
     void JoinWithDuplicateEmail() throws Exception {
         // given
         final JoinRequestDto dto1 = JoinRequestDto.builder()
-                .name(Member1.NAME)
-                .email(Member1.EMAIL)
-                .password(Member1.PASSWORD)
-                .checkPassword(Member1.PASSWORD)
-                .nickname(Member1.NICKNAME)
-                .age(Member1.AGE)
-                .ventureBefore(Member1.VENTURE_BEFORE)
-                .job(Member1.JOB)
-                .businessCategory(Member1.BUSINESS_CATEGORY)
+                .name(User1.NAME)
+                .email(User1.EMAIL)
+                .password(User1.PASSWORD)
+                .checkPassword(User1.PASSWORD)
+                .nickname(User1.NICKNAME)
+                .age(User1.AGE)
+                .ventureBefore(User1.VENTURE_BEFORE)
+                .job(User1.JOB)
+                .businessCategory(User1.BUSINESS_CATEGORY)
                 .registrationPath(RegistrationPathEnum.BLOG)
                 .build();
 
         final JoinRequestDto dto2 = JoinRequestDto.builder()
-                .name(Member2.NAME)
-                .email(Member1.EMAIL)
-                .password(Member2.PASSWORD)
-                .checkPassword(Member2.PASSWORD)
-                .nickname(Member2.NICKNAME)
-                .age(Member2.AGE)
-                .ventureBefore(Member2.VENTURE_BEFORE)
-                .job(Member2.JOB)
-                .businessCategory(Member2.BUSINESS_CATEGORY)
+                .name(User2.NAME)
+                .email(User1.EMAIL)
+                .password(User2.PASSWORD)
+                .checkPassword(User2.PASSWORD)
+                .nickname(User2.NICKNAME)
+                .age(User2.AGE)
+                .ventureBefore(User2.VENTURE_BEFORE)
+                .job(User2.JOB)
+                .businessCategory(User2.BUSINESS_CATEGORY)
                 .registrationPath(RegistrationPathEnum.BLOG)
                 .build();
 
@@ -95,28 +95,28 @@ public class MemberControllerTest extends ControllerTest {
     void JoinWithDuplicateNickname() throws Exception {
         // given
         final JoinRequestDto dto1 = JoinRequestDto.builder()
-                .name(Member1.NAME)
-                .email(Member1.EMAIL)
-                .password(Member1.PASSWORD)
-                .checkPassword(Member1.PASSWORD)
-                .nickname(Member1.NICKNAME)
-                .age(Member1.AGE)
-                .ventureBefore(Member1.VENTURE_BEFORE)
-                .job(Member1.JOB)
-                .businessCategory(Member1.BUSINESS_CATEGORY)
+                .name(User1.NAME)
+                .email(User1.EMAIL)
+                .password(User1.PASSWORD)
+                .checkPassword(User1.PASSWORD)
+                .nickname(User1.NICKNAME)
+                .age(User1.AGE)
+                .ventureBefore(User1.VENTURE_BEFORE)
+                .job(User1.JOB)
+                .businessCategory(User1.BUSINESS_CATEGORY)
                 .registrationPath(RegistrationPathEnum.BLOG)
                 .build();
 
         final JoinRequestDto dto2 = JoinRequestDto.builder()
-                .name(Member2.NAME)
-                .email(Member2.EMAIL)
-                .password(Member2.PASSWORD)
-                .checkPassword(Member2.PASSWORD)
-                .nickname(Member1.NICKNAME)
-                .age(Member2.AGE)
-                .ventureBefore(Member2.VENTURE_BEFORE)
-                .job(Member2.JOB)
-                .businessCategory(Member2.BUSINESS_CATEGORY)
+                .name(User2.NAME)
+                .email(User2.EMAIL)
+                .password(User2.PASSWORD)
+                .checkPassword(User2.PASSWORD)
+                .nickname(User1.NICKNAME)
+                .age(User2.AGE)
+                .ventureBefore(User2.VENTURE_BEFORE)
+                .job(User2.JOB)
+                .businessCategory(User2.BUSINESS_CATEGORY)
                 .registrationPath(RegistrationPathEnum.BLOG)
                 .build();
 
@@ -142,21 +142,21 @@ public class MemberControllerTest extends ControllerTest {
     void login() throws Exception {
         // given
         final JoinRequestDto joinDto = JoinRequestDto.builder()
-                .name(Member1.NAME)
-                .email(Member1.EMAIL)
-                .password(Member1.PASSWORD)
-                .checkPassword(Member1.PASSWORD)
-                .nickname(Member1.NICKNAME)
-                .age(Member1.AGE)
-                .ventureBefore(Member1.VENTURE_BEFORE)
-                .job(Member1.JOB)
-                .businessCategory(Member1.BUSINESS_CATEGORY)
+                .name(User1.NAME)
+                .email(User1.EMAIL)
+                .password(User1.PASSWORD)
+                .checkPassword(User1.PASSWORD)
+                .nickname(User1.NICKNAME)
+                .age(User1.AGE)
+                .ventureBefore(User1.VENTURE_BEFORE)
+                .job(User1.JOB)
+                .businessCategory(User1.BUSINESS_CATEGORY)
                 .registrationPath(RegistrationPathEnum.BLOG)
                 .build();
 
         final LoginRequestDto loginDto = LoginRequestDto.builder()
-                .email(Member1.EMAIL)
-                .password(Member1.PASSWORD)
+                .email(User1.EMAIL)
+                .password(User1.PASSWORD)
                 .build();
 
         // when
@@ -180,8 +180,8 @@ public class MemberControllerTest extends ControllerTest {
     void loginWithNotFoundEmail() throws Exception {
         // given
         final LoginRequestDto dto = LoginRequestDto.builder()
-                .email(Member2.EMAIL)
-                .password(Member2.PASSWORD)
+                .email(User2.EMAIL)
+                .password(User2.PASSWORD)
                 .build();
 
         // when
@@ -201,21 +201,21 @@ public class MemberControllerTest extends ControllerTest {
     void loginWithInvalidPassword() throws Exception {
         // given
         final JoinRequestDto joinDto = JoinRequestDto.builder()
-                .name(Member1.NAME)
-                .email(Member1.EMAIL)
-                .password(Member1.PASSWORD)
-                .checkPassword(Member1.PASSWORD)
-                .nickname(Member1.NICKNAME)
-                .age(Member1.AGE)
-                .ventureBefore(Member1.VENTURE_BEFORE)
-                .job(Member1.JOB)
-                .businessCategory(Member1.BUSINESS_CATEGORY)
+                .name(User1.NAME)
+                .email(User1.EMAIL)
+                .password(User1.PASSWORD)
+                .checkPassword(User1.PASSWORD)
+                .nickname(User1.NICKNAME)
+                .age(User1.AGE)
+                .ventureBefore(User1.VENTURE_BEFORE)
+                .job(User1.JOB)
+                .businessCategory(User1.BUSINESS_CATEGORY)
                 .registrationPath(RegistrationPathEnum.BLOG)
                 .build();
 
         final LoginRequestDto loginDto = LoginRequestDto.builder()
-                .email(Member1.EMAIL)
-                .password(Member2.PASSWORD)
+                .email(User1.EMAIL)
+                .password(User2.PASSWORD)
                 .build();
 
         // when
@@ -239,15 +239,15 @@ public class MemberControllerTest extends ControllerTest {
     void CheckDuplicatedEmail() throws Exception {
         // given
         final JoinRequestDto joinDto = JoinRequestDto.builder()
-                .name(Member1.NAME)
-                .email(Member1.EMAIL)
-                .password(Member1.PASSWORD)
-                .checkPassword(Member1.PASSWORD)
-                .nickname(Member1.NICKNAME)
-                .age(Member1.AGE)
-                .ventureBefore(Member1.VENTURE_BEFORE)
-                .job(Member1.JOB)
-                .businessCategory(Member1.BUSINESS_CATEGORY)
+                .name(User1.NAME)
+                .email(User1.EMAIL)
+                .password(User1.PASSWORD)
+                .checkPassword(User1.PASSWORD)
+                .nickname(User1.NICKNAME)
+                .age(User1.AGE)
+                .ventureBefore(User1.VENTURE_BEFORE)
+                .job(User1.JOB)
+                .businessCategory(User1.BUSINESS_CATEGORY)
                 .registrationPath(RegistrationPathEnum.BLOG)
                 .build();
 
@@ -256,7 +256,7 @@ public class MemberControllerTest extends ControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(joinDto)));
 
-        final ResultActions actions = mvc.perform(get("/duplicated/email/{email}", Member1.EMAIL)
+        final ResultActions actions = mvc.perform(get("/duplicated/email/{email}", User1.EMAIL)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());
 
@@ -271,15 +271,15 @@ public class MemberControllerTest extends ControllerTest {
     void CheckDuplicatedNickname() throws Exception {
         // given
         final JoinRequestDto joinDto = JoinRequestDto.builder()
-                .name(Member1.NAME)
-                .email(Member1.EMAIL)
-                .password(Member1.PASSWORD)
-                .checkPassword(Member1.PASSWORD)
-                .nickname(Member1.NICKNAME)
-                .age(Member1.AGE)
-                .ventureBefore(Member1.VENTURE_BEFORE)
-                .job(Member1.JOB)
-                .businessCategory(Member1.BUSINESS_CATEGORY)
+                .name(User1.NAME)
+                .email(User1.EMAIL)
+                .password(User1.PASSWORD)
+                .checkPassword(User1.PASSWORD)
+                .nickname(User1.NICKNAME)
+                .age(User1.AGE)
+                .ventureBefore(User1.VENTURE_BEFORE)
+                .job(User1.JOB)
+                .businessCategory(User1.BUSINESS_CATEGORY)
                 .registrationPath(RegistrationPathEnum.BLOG)
                 .build();
 
@@ -288,7 +288,7 @@ public class MemberControllerTest extends ControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(joinDto)));
 
-        final ResultActions actions = mvc.perform(get("/duplicated/nickname/{nickname}", Member1.NICKNAME)
+        final ResultActions actions = mvc.perform(get("/duplicated/nickname/{nickname}", User1.NICKNAME)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());
 
