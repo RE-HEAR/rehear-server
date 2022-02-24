@@ -16,7 +16,6 @@ import lombok.Setter;
 
 @Entity
 @Getter
-@Setter
 @Builder
 @AllArgsConstructor
 public class Tag {
