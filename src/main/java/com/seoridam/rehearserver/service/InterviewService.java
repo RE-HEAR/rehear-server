@@ -11,10 +11,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.seoridam.rehearserver.domain.Interview;
+import com.seoridam.rehearserver.domain.InterviewForm;
+import com.seoridam.rehearserver.domain.SubCategory;
 import com.seoridam.rehearserver.domain.Tag;
+import com.seoridam.rehearserver.domain.TopLike;
 import com.seoridam.rehearserver.dto.InterviewListDto;
 import com.seoridam.rehearserver.dto.InterviewResponseDto;
 import com.seoridam.rehearserver.repository.InterviewRepository;
+import com.seoridam.rehearserver.repository.SubCategoryRepository;
+import com.seoridam.rehearserver.repository.TagRepository;
+import com.seoridam.rehearserver.repository.TopLikeRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +29,9 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class InterviewService {
 	private final InterviewRepository interviewRepository;
+	private final TagRepository tagRepository;
+	private final TopLikeRepository topLikeRepository;
+	private final SubCategoryRepository subCategoryRepository;
 
 	// 인터뷰 하나 조회
 	@Transactional(readOnly = true)
@@ -72,4 +81,31 @@ public class InterviewService {
 		return new PageImpl<>(interviewListDtos);
 	}
 
+	// 인터뷰 하나 저장
+	public void registerInterview(InterviewForm form){
+		Interview interview = Interview.builder()
+			.view(0)
+			.video_url(form.getVideo_url())
+			.photo_url(form.getPhoto_url())
+			.title(form.getTitle())
+			.sub_title(form.getSub_title())
+			.intro_text(form.getIntro_text())
+			.body_text(form.getBody_text()).build();
+		Interview savedInterview = interviewRepository.save(interview);
+
+		//toplike 연관
+		TopLike topLike = TopLike.builder().total(0).likeWeek(0).likeToday(0).likePastday(0).build();
+		topLike.setInterview(savedInterview);
+		topLikeRepository.save(topLike);
+
+		//tag 저장 및 연관
+		List<Long> idList = form.getSubCategoryIdList();
+		for (Long subId : idList) {
+			Optional<SubCategory> sub = subCategoryRepository.findById(subId);
+			sub.ifPresent(subCategory -> {
+				Tag setTag = Tag.builder().interview(savedInterview).subCategory(subCategory).build();
+				tagRepository.save(setTag);
+			});
+		}
+	}
 }
