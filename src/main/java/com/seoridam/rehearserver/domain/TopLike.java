@@ -14,7 +14,6 @@ import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Getter
@@ -39,4 +38,8 @@ public class TopLike {
 	private Interview interview;
 
 	protected TopLike() {}
+
+	public void setInterview(Interview interview) {
+		this.interview = interview;
+	}
 }
