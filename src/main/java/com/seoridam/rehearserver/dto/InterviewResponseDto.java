@@ -11,7 +11,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class InterviewResponseDto {
-	private Long id;
 	private LocalDate createDate;
 	private Integer view;
 	private String video_url;

@@ -36,7 +36,6 @@ public class InterviewService {
 		List<String> subcategory_names = tagList.stream().map(tag -> tag.getSubCategory().getName()).collect(Collectors.toList());
 
 		return InterviewResponseDto.builder()
-			.id(interview.getId())
 			.createDate(interview.getCreateDate())
 			.body_text(interview.getBodyText())
 			.intro_text(interview.getIntroText())
