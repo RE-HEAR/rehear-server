@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.seoridam.rehearserver.domain.InterviewForm;
 import com.seoridam.rehearserver.dto.InterviewListDto;
+import com.seoridam.rehearserver.dto.InterviewListSource;
 import com.seoridam.rehearserver.dto.InterviewResponseDto;
 import com.seoridam.rehearserver.global.common.StatusEnum;
 import com.seoridam.rehearserver.global.common.SuccessResponse;
@@ -44,7 +45,7 @@ public class InterviewController {
 	public SuccessResponse getInterviewList(@RequestParam("page") Integer page, @RequestParam("size") Integer size){
 
 		PageRequest pageRequest = PageRequest.of(page,size);
-		Page<InterviewListDto> interviewList = interviewService.getInterviewList(pageRequest);
+		Page<InterviewListSource> interviewList = interviewService.getInterviewList(pageRequest);
 
 		return SuccessResponse.builder()
 			.status(StatusEnum.OK)

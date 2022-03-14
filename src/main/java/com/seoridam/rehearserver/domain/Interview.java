@@ -30,16 +30,16 @@ public class Interview {
 	@Builder.Default
 	private LocalDate createDate = LocalDate.now();
 	private Integer view;
-	private String video_url;
-	private String photo_url;
+	private String videoUrl;
+	private String photoUrl;
 	private String title;
 	//소제목
-	private String sub_title;
+	private String subTitle;
 	//클릭 전 소개문
-	private String intro_text;
+	private String introText;
 	//본문
 	@Column(columnDefinition = "TEXT")
-	private String body_text;
+	private String bodyText;
 
 	//연관관계 매핑 ===================
 
