@@ -15,7 +15,7 @@ public class LikeController {
 
     private final LikeService likeService;
     
-    @PostMapping("/like")
+    @PostMapping("members/like")
     public void getInterview(@Valid @RequestBody LikeRequestDto dto, @AuthenticationPrincipal User user){
 
          likeService.postLike(dto, user);
