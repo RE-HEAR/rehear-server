@@ -13,11 +13,11 @@ public class InterviewFormFixture {
 		public static List<Long> ids = Arrays.asList(1L, 3L);
 		public static final InterviewForm interview = InterviewForm.builder()
 			.view(0)
-			.intro_text("test")
-			.body_text("test")
+			.introText("test")
+			.bodyText("test")
 			.title("test title")
-			.photo_url("test url")
-			.video_url("test vid")
+			.photoUrl("test url")
+			.videoUrl("test vid")
 			.SubCategoryIdList(ids)
 			.build();
 	}

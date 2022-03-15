@@ -11,12 +11,12 @@ import lombok.Setter;
 @Builder
 public class InterviewForm {
 	private int view;
-	private String video_url;
-	private String photo_url;
+	private String videoUrl;
+	private String photoUrl;
 	private String title;
-	private String intro_text;
-	private String body_text;
-	private String sub_title;
+	private String introText;
+	private String bodyText;
+	private String subTitle;
 
 	private List<Long> SubCategoryIdList;
 }

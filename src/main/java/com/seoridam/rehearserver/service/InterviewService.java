@@ -62,24 +62,24 @@ public class InterviewService {
 		return interviewRepository.findInterviewProjectionsBy(pageRequest);
 	}
 
-	// 인터뷰 하나 저장
+	// 인터뷰 저장
 	public void registerInterview(InterviewForm form){
 		Interview interview = Interview.builder()
 			.view(0)
-			.video_url(form.getVideo_url())
-			.photo_url(form.getPhoto_url())
+			.videoUrl(form.getVideoUrl())
+			.photoUrl(form.getPhotoUrl())
 			.title(form.getTitle())
-			.sub_title(form.getSub_title())
-			.intro_text(form.getIntro_text())
-			.body_text(form.getBody_text()).build();
+			.subTitle(form.getSubTitle())
+			.introText(form.getIntroText())
+			.bodyText(form.getBodyText()).build();
 		Interview savedInterview = interviewRepository.save(interview);
 
-		//toplike 연관
+		//toplike 초기화 및 저장
 		TopLike topLike = TopLike.builder().total(0).likeWeek(0).likeToday(0).likePastday(0).build();
 		topLike.setInterview(savedInterview);
 		topLikeRepository.save(topLike);
 
-		//tag 저장 및 연관
+		//관련 tag 저장
 		List<Long> idList = form.getSubCategoryIdList();
 		for (Long subId : idList) {
 			Optional<SubCategory> sub = subCategoryRepository.findById(subId);
