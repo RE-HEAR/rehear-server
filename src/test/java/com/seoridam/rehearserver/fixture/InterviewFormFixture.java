@@ -1,10 +1,9 @@
 package com.seoridam.rehearserver.fixture;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.seoridam.rehearserver.domain.InterviewForm;
+import com.seoridam.rehearserver.dto.InterviewForm;
 
 public class InterviewFormFixture {
 

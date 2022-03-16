@@ -5,17 +5,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.seoridam.rehearserver.domain.Interview;
-import com.seoridam.rehearserver.domain.InterviewForm;
+import com.seoridam.rehearserver.dto.InterviewForm;
 import com.seoridam.rehearserver.domain.SubCategory;
 import com.seoridam.rehearserver.domain.Tag;
 import com.seoridam.rehearserver.domain.TopLike;
-import com.seoridam.rehearserver.dto.InterviewListDto;
 import com.seoridam.rehearserver.dto.InterviewListSource;
 import com.seoridam.rehearserver.dto.InterviewResponseDto;
 import com.seoridam.rehearserver.repository.InterviewRepository;
@@ -63,7 +61,7 @@ public class InterviewService {
 	}
 
 	// 인터뷰 저장
-	public void registerInterview(InterviewForm form){
+	public Long registerInterview(InterviewForm form){
 		Interview interview = Interview.builder()
 			.view(0)
 			.videoUrl(form.getVideoUrl())
@@ -88,5 +86,6 @@ public class InterviewService {
 				tagRepository.save(setTag);
 			});
 		}
+		return savedInterview.getId();
 	}
 }

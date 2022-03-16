@@ -1,4 +1,4 @@
-package com.seoridam.rehearserver.domain;
+package com.seoridam.rehearserver.dto;
 
 import java.util.List;
 
@@ -10,13 +10,13 @@ import lombok.Setter;
 @Setter
 @Builder
 public class InterviewForm {
-	private int view;
+	private Integer view;
 	private String videoUrl;
 	private String photoUrl;
 	private String title;
+	private String subTitle;
 	private String introText;
 	private String bodyText;
-	private String subTitle;
 
 	private List<Long> SubCategoryIdList;
 }

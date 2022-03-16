@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.seoridam.rehearserver.domain.InterviewForm;
-import com.seoridam.rehearserver.dto.InterviewListDto;
+import com.seoridam.rehearserver.dto.InterviewForm;
 import com.seoridam.rehearserver.dto.InterviewListSource;
 import com.seoridam.rehearserver.dto.InterviewResponseDto;
 import com.seoridam.rehearserver.global.common.StatusEnum;
