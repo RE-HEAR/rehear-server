@@ -14,7 +14,13 @@ public interface InterviewListSource {
 	String getIntroText();
 	List<TagInfo> getTagList();
 
-	interface TagInfo{
-		SubCategory getSubCategory();
+	interface TagInfo {
+		SubCategoryInfo getSubCategory();
+
+		interface SubCategoryInfo {
+			String getName();
+		}
 	}
+
+
 }
