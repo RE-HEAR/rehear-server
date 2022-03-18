@@ -1,13 +1,19 @@
 package com.seoridam.rehearserver.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.seoridam.rehearserver.dto.InterviewListDto;
+import com.seoridam.rehearserver.dto.InterviewForm;
 import com.seoridam.rehearserver.dto.InterviewListSource;
 import com.seoridam.rehearserver.dto.InterviewResponseDto;
 import com.seoridam.rehearserver.global.common.StatusEnum;
@@ -47,6 +53,12 @@ public class InterviewController {
 			.data(interviewList)
 			.message("인터뷰 조회 성공")
 			.build();
+	}
+
+	@PostMapping("/admin/interview")
+	@ResponseStatus(HttpStatus.CREATED)
+	public void registerInterview(@Valid @RequestBody InterviewForm interviewForm){
+		interviewService.registerInterview(interviewForm);
 	}
 
 }

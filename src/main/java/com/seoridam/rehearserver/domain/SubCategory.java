@@ -1,7 +1,5 @@
 package com.seoridam.rehearserver.domain;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,11 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
 public class SubCategory {
 
 	@Id
@@ -32,10 +33,5 @@ public class SubCategory {
 	private Category category;
 
 	protected SubCategory() {}
-
-	@Builder
-	public SubCategory(String name){
-		this.name=name;
-	}
 
 }
