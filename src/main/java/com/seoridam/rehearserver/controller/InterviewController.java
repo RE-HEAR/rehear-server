@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.seoridam.rehearserver.dto.InterviewForm;
-import com.seoridam.rehearserver.dto.InterviewListSource;
+import com.seoridam.rehearserver.dto.InterviewProjection;
 import com.seoridam.rehearserver.dto.InterviewResponseDto;
 import com.seoridam.rehearserver.global.common.StatusEnum;
 import com.seoridam.rehearserver.global.common.SuccessResponse;
@@ -46,7 +46,7 @@ public class InterviewController {
 	public SuccessResponse getInterviewList(@RequestParam("page") Integer page, @RequestParam("size") Integer size){
 
 		PageRequest pageRequest = PageRequest.of(page,size);
-		Page<InterviewListSource> interviewList = interviewService.getInterviewList(pageRequest);
+		Page<InterviewProjection> interviewList = interviewService.getInterviewList(pageRequest);
 
 		return SuccessResponse.builder()
 			.status(StatusEnum.OK)
