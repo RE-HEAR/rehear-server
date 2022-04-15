@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.seoridam.rehearserver.dto.InterviewForm;
 import com.seoridam.rehearserver.dto.InterviewProjection;
 import com.seoridam.rehearserver.dto.InterviewResponseDto;
+import com.seoridam.rehearserver.dto.TagInterviewProjection;
 import com.seoridam.rehearserver.global.common.StatusEnum;
 import com.seoridam.rehearserver.global.common.SuccessResponse;
 import com.seoridam.rehearserver.service.InterviewService;
+import com.seoridam.rehearserver.service.TagService;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,7 @@ import lombok.RequiredArgsConstructor;
 public class InterviewController {
 
 	public final InterviewService interviewService;
+	public final TagService tagService;
 
 	@GetMapping("/interview/{id}")
 	public SuccessResponse getInterview(@PathVariable Long id){
@@ -52,6 +55,21 @@ public class InterviewController {
 			.status(StatusEnum.OK)
 			.data(interviewList)
 			.message("인터뷰 조회 성공")
+			.build();
+	}
+
+	@GetMapping("/interview/list/subcategory/{subcategoryId}")
+	@ApiOperation(value = "서브카테고리 id를 적용한 인터뷰 리스트 목록 반환", notes = "ex: http://localhost:8080/interview/list/2/?page=3&size=4")
+	public SuccessResponse getInterviewListBySubcategoryId(@RequestParam("page") Integer page, @RequestParam("size") Integer size, @PathVariable Long subcategoryId){
+
+		PageRequest pageRequest = PageRequest.of(page,size);
+		Page<TagInterviewProjection> interviewListBySubCategoryId = tagService.getInterviewListBySubCategoryId(
+			subcategoryId, pageRequest);
+
+		return SuccessResponse.builder()
+			.status(StatusEnum.OK)
+			.data(interviewListBySubCategoryId)
+			.message("서브카테고리 별 인터뷰 조회 성공")
 			.build();
 	}
 
