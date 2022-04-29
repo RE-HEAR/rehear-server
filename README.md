@@ -53,7 +53,7 @@
 ```
 
 ### ERD
-![image](https://user-images.githubusercontent.com/31584255/154686556-c7f3963b-8fa9-4e93-8200-8889ef34b6cd.png)
+![image](https://user-images.githubusercontent.com/31584255/165919514-53e050e0-6d42-4dd7-baa1-50727dc587b6.png)
 
 <br/>
 
