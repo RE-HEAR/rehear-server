@@ -3,9 +3,7 @@ package com.seoridam.rehearserver.dto;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.seoridam.rehearserver.domain.SubCategory;
-
-public interface InterviewListSource {
+public interface InterviewProjection {
 	Long getId();
 	LocalDate getCreateDate();
 	Integer getView();

@@ -66,4 +66,11 @@ class InterviewControllerTest extends ControllerTest {
 			.andExpect(jsonPath("data.content.length()").value(5));
 	}
 
+	@DisplayName("인터뷰 목록 리스트 조회 - by subcategoryId")
+	@Test
+	void getInterviewListBySubcategory() throws Exception {
+		ResultActions actions = mvc.perform(get("/interview/list/subcategory/1/?page=0&size=5")
+			.contentType(MediaType.APPLICATION_JSON)).andDo(print());
+		//db row와 비교 - 일치함
+	}
 }

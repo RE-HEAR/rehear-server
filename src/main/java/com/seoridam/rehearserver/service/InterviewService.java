@@ -14,7 +14,7 @@ import com.seoridam.rehearserver.dto.InterviewForm;
 import com.seoridam.rehearserver.domain.SubCategory;
 import com.seoridam.rehearserver.domain.Tag;
 import com.seoridam.rehearserver.domain.TopLike;
-import com.seoridam.rehearserver.dto.InterviewListSource;
+import com.seoridam.rehearserver.dto.InterviewProjection;
 import com.seoridam.rehearserver.dto.InterviewResponseDto;
 import com.seoridam.rehearserver.repository.InterviewRepository;
 import com.seoridam.rehearserver.repository.SubCategoryRepository;
@@ -56,7 +56,7 @@ public class InterviewService {
 
 	//인터뷰 리스트 목록 조회
 	@Transactional(readOnly = true)
-	public Page<InterviewListSource> getInterviewList(PageRequest pageRequest){
+	public Page<InterviewProjection> getInterviewList(PageRequest pageRequest){
 		return interviewRepository.findInterviewProjectionsBy(pageRequest);
 	}
 

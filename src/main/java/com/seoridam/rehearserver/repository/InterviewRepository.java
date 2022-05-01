@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.seoridam.rehearserver.domain.Interview;
-import com.seoridam.rehearserver.dto.InterviewListSource;
+import com.seoridam.rehearserver.dto.InterviewProjection;
 
 public interface InterviewRepository extends JpaRepository<Interview, Long> {
 
@@ -17,5 +17,6 @@ public interface InterviewRepository extends JpaRepository<Interview, Long> {
 
 	//find 와 by는 무조건 써줘야 함
 	//id 'org.springframework.boot' version '2.6.2' 이하로만 작동
-	Page<InterviewListSource> findInterviewProjectionsBy(Pageable pageable);
+	Page<InterviewProjection> findInterviewProjectionsBy(Pageable pageable);
+
 }
