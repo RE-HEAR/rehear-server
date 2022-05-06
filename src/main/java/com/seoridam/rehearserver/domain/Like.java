@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -19,6 +20,9 @@ public class Like {
     @Column(name = "LIKE_ID")
     private Long id;
 
+    @Builder.Default
+    private LocalDateTime createTime = LocalDateTime.now();
+
     //연관관계 매핑 ===================
     @ManyToOne
     @JoinColumn(name = "INTERVIEW_ID")
@@ -28,6 +32,7 @@ public class Like {
     @JoinColumn(name = "USER_ID")
     private User user;
 
+    @Enumerated(EnumType.STRING)
     private LikeTypeEnum likeType;
 
     protected Like() {}
