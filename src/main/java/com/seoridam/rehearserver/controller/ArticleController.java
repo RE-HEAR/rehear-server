@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.seoridam.rehearserver.dto.ArticleForm;
 import com.seoridam.rehearserver.dto.ArticleProjection;
-import com.seoridam.rehearserver.dto.ArticleResponseDto;
 import com.seoridam.rehearserver.dto.TagArticleProjection;
 import com.seoridam.rehearserver.global.common.StatusEnum;
 import com.seoridam.rehearserver.global.common.SuccessResponse;
@@ -35,7 +34,7 @@ public class ArticleController {
 	@GetMapping("/article/{id}")
 	public SuccessResponse getArticle(@PathVariable Long id){
 
-		ArticleResponseDto article = articleService.getArticle(id);
+		ArticleProjection article = articleService.getArticle(id);
 
 		return SuccessResponse.builder()
 			.status(StatusEnum.OK)

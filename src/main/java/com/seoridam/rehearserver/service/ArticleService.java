@@ -14,7 +14,6 @@ import com.seoridam.rehearserver.dto.ArticleForm;
 import com.seoridam.rehearserver.domain.SubCategory;
 import com.seoridam.rehearserver.domain.Tag;
 import com.seoridam.rehearserver.dto.ArticleProjection;
-import com.seoridam.rehearserver.dto.ArticleResponseDto;
 import com.seoridam.rehearserver.repository.ArticleRepository;
 import com.seoridam.rehearserver.repository.SubCategoryRepository;
 import com.seoridam.rehearserver.repository.TagRepository;
@@ -31,23 +30,8 @@ public class ArticleService {
 
 	// article 하나 조회
 	@Transactional(readOnly = true)
-	public ArticleResponseDto getArticle(Long id) {
-
-		Optional<Article> found = articleRepository.findById(id);
-		Article article = found.orElseThrow(RuntimeException::new);
-
-		List<Tag> tagList = article.getTagList();
-		List<String> subcategoryNames = tagList.stream().map(tag -> tag.getSubCategory().getName()).collect(Collectors.toList());
-
-		return ArticleResponseDto.builder()
-			.createDate(article.getCreateDate())
-			.bodyText(article.getBodyText())
-			.introText(article.getIntroText())
-			.subTitle(article.getSubTitle())
-			.photoUrl(article.getPhotoUrl())
-			.subcategoryNames(subcategoryNames)
-			.view(article.getView())
-			.title(article.getTitle()).build();
+	public ArticleProjection getArticle(Long id) {
+		return articleRepository.findArticleProjectionById(id);
 	}
 
 	//article 리스트 목록 조회
