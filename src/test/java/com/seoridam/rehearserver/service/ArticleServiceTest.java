@@ -5,6 +5,7 @@ import static org.mockito.BDDMockito.*;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,14 +13,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.seoridam.rehearserver.domain.SubCategory;
-import com.seoridam.rehearserver.fixture.SubCategoryFixture;
+import com.seoridam.rehearserver.domain.Article;
 import com.seoridam.rehearserver.repository.ArticleRepository;
 import com.seoridam.rehearserver.repository.SubCategoryRepository;
 import com.seoridam.rehearserver.repository.TagRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class ArticleRegisterTest {
+public class ArticleServiceTest {
 
 	@InjectMocks
 	private ArticleService articleService;
@@ -33,20 +33,35 @@ public class ArticleRegisterTest {
 	@Mock
 	private SubCategoryRepository subCategoryRepository;
 
-	@DisplayName("인터뷰 하나 등록")
+	@DisplayName("게시글 하나 등록")
 	@Test
-	public void registerInterview() throws Exception {
+	public void registerArticle() throws Exception {
 		//given
-		final Optional<SubCategory> sub1 = Optional.of(SubCategoryFixture.SubCategory1.SUBCATEGORY);
-		final Optional<SubCategory> sub2 = Optional.of(SubCategoryFixture.SubCategory2.SUBCATEGORY);
-		given(subCategoryRepository.findById(1L)).willReturn(sub1);
-		given(subCategoryRepository.findById(3L)).willReturn(sub2);
-		// given().willReturn(sub2);
-
+		when(articleRepository.save(any(Article.class))).thenReturn(Article.builder().id(0L).build());
 		//when
-		articleService.registerArticle(article);
-	    //then
+		Long id = articleService.registerArticle(article);
+		//then
 		then(articleRepository).should(times(1)).save(any());
-		then(tagRepository).should(times(2)).save(any());
+		then(subCategoryRepository).should(times(2)).findById(any());
+		Assertions.assertEquals(id,0);
 	}
+
+	@DisplayName("게시글 하나 조회")
+	@Test
+	public void getArticle() throws Exception {
+		//when
+		articleService.getArticle(0L);
+		//then
+		then(articleRepository).should(times(1)).findArticleProjectionById(any());
+	}
+
+	@DisplayName("게시글 리스트 조회")
+	@Test
+	public void getArticleList() throws Exception {
+		//when
+		articleService.getArticleList(any());
+		//then
+		then(articleRepository).should(times(1)).findArticleProjectionsBy(any());
+	}
+
 }
