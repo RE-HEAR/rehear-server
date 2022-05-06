@@ -10,17 +10,16 @@ import lombok.Getter;
 @Builder
 @Getter
 @AllArgsConstructor
-public class InterviewResponseDto {
+public class ArticleResponseDto {
 	private LocalDate createDate;
 	private Integer view;
-	private String video_url;
-	private String photo_url;
+	private String photoUrl;
 	private String title;
-	private String intro_text;
-	private String body_text;
-	private String sub_title;
-	private List<String> subcategory_names;
+	private String introText;
+	private String bodyText;
+	private String subTitle;
+	private List<String> subcategoryNames;
 
-	protected InterviewResponseDto(){}
+	protected ArticleResponseDto(){}
 
 }

@@ -12,26 +12,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import com.seoridam.rehearserver.dto.InterviewForm;
-import com.seoridam.rehearserver.fixture.InterviewFormFixture;
-import com.seoridam.rehearserver.service.InterviewService;
+import com.seoridam.rehearserver.dto.ArticleForm;
+import com.seoridam.rehearserver.fixture.ArticleFormFixture;
+import com.seoridam.rehearserver.service.ArticleService;
 
 @ExtendWith(MockitoExtension.class)
-class InterviewControllerTest extends ControllerTest {
+class ArticleControllerTest extends ControllerTest {
 
 	@Autowired
-	private InterviewService interviewService;
+	private ArticleService articleService;
 
 	@DisplayName("인터뷰 등록")
 	@Test
-	public void registerInterview() throws Exception {
+	public void registerArticle() throws Exception {
 	    //given
-		InterviewForm interviewForm = InterviewFormFixture.InterviewForm1.interview;
+		ArticleForm articleForm = ArticleFormFixture.ArticleForm1.article;
 
 		//when
-		final ResultActions actions = mvc.perform(post("/admin/interview")
+		final ResultActions actions = mvc.perform(post("/admin/article")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(interviewForm)))
+				.content(objectMapper.writeValueAsString(articleForm)))
 			.andDo(print());
 
 	    //then
@@ -42,24 +42,23 @@ class InterviewControllerTest extends ControllerTest {
 
 	@DisplayName("인터뷰 내용 조회")
 	@Test
-	void getInterview() throws Exception {
+	void getArticle() throws Exception {
 		//given
-		InterviewForm interviewForm = InterviewFormFixture.InterviewForm1.interview;
-		Long id = interviewService.registerInterview(interviewForm);
+		ArticleForm articleForm = ArticleFormFixture.ArticleForm1.article;
+		Long id = articleService.registerArticle(articleForm);
 
-		ResultActions actions = mvc.perform(get("/interview/{id}", id)
+		ResultActions actions = mvc.perform(get("/article/{id}", id)
 			.contentType(MediaType.APPLICATION_JSON)).andDo(print());
 
 		actions.andExpect(status().isOk())
-			.andExpect(jsonPath("data.video_url").value(interviewForm.getVideoUrl()))
-			.andExpect(jsonPath("data.title").value(interviewForm.getTitle()))
-			.andExpect(jsonPath("data.intro_text").value(interviewForm.getIntroText()));
+			.andExpect(jsonPath("data.title").value(articleForm.getTitle()))
+			.andExpect(jsonPath("data.intro_text").value(articleForm.getIntroText()));
 	}
 
-	@DisplayName("인터뷰 목록 리스트 조회 - DB에 interview row가 5가 이상 있다고 가정")
+	@DisplayName("인터뷰 목록 리스트 조회 - DB에 article row가 5가 이상 있다고 가정")
 	@Test
-	void getInterviewList() throws Exception {
-		ResultActions actions = mvc.perform(get("/interview/list/?page=0&size=5")
+	void getArticleList() throws Exception {
+		ResultActions actions = mvc.perform(get("/article/list/?page=0&size=5")
 			.contentType(MediaType.APPLICATION_JSON)).andDo(print());
 
 		actions
@@ -68,8 +67,8 @@ class InterviewControllerTest extends ControllerTest {
 
 	@DisplayName("인터뷰 목록 리스트 조회 - by subcategoryId")
 	@Test
-	void getInterviewListBySubcategory() throws Exception {
-		ResultActions actions = mvc.perform(get("/interview/list/subcategory/1/?page=0&size=5")
+	void getArticleListBySubcategory() throws Exception {
+		ResultActions actions = mvc.perform(get("/article/list/subcategory/1/?page=0&size=5")
 			.contentType(MediaType.APPLICATION_JSON)).andDo(print());
 		//db row와 비교 - 일치함
 	}

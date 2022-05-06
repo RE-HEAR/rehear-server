@@ -9,9 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class InterviewForm {
+public class ArticleForm {
 	private Integer view;
-	private String videoUrl;
 	private String photoUrl;
 	private String title;
 	private String subTitle;

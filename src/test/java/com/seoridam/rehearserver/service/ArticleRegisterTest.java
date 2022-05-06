@@ -1,6 +1,6 @@
 package com.seoridam.rehearserver.service;
 
-import static com.seoridam.rehearserver.fixture.InterviewFormFixture.InterviewForm1.*;
+import static com.seoridam.rehearserver.fixture.ArticleFormFixture.ArticleForm1.*;
 import static org.mockito.BDDMockito.*;
 
 import java.util.Optional;
@@ -14,22 +14,18 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.seoridam.rehearserver.domain.SubCategory;
 import com.seoridam.rehearserver.fixture.SubCategoryFixture;
-import com.seoridam.rehearserver.repository.InterviewRepository;
+import com.seoridam.rehearserver.repository.ArticleRepository;
 import com.seoridam.rehearserver.repository.SubCategoryRepository;
 import com.seoridam.rehearserver.repository.TagRepository;
-import com.seoridam.rehearserver.repository.TopLikeRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class InterviewRegisterTest {
+public class ArticleRegisterTest {
 
 	@InjectMocks
-	private InterviewService interviewService;
+	private ArticleService articleService;
 
 	@Mock
-	private InterviewRepository interviewRepository;
-
-	@Mock
-	private TopLikeRepository topLikeRepository;
+	private ArticleRepository articleRepository;
 
 	@Mock
 	private TagRepository tagRepository;
@@ -45,11 +41,12 @@ public class InterviewRegisterTest {
 		final Optional<SubCategory> sub2 = Optional.of(SubCategoryFixture.SubCategory2.SUBCATEGORY);
 		given(subCategoryRepository.findById(1L)).willReturn(sub1);
 		given(subCategoryRepository.findById(3L)).willReturn(sub2);
+		// given().willReturn(sub2);
+
 		//when
-		interviewService.registerInterview(interview);
+		articleService.registerArticle(article);
 	    //then
-		then(interviewRepository).should(times(1)).save(any());
-		then(topLikeRepository).should(times(1)).save(any());
+		then(articleRepository).should(times(1)).save(any());
 		then(tagRepository).should(times(2)).save(any());
 	}
 }
