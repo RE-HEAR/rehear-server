@@ -1,5 +1,6 @@
 package com.seoridam.rehearserver.controller;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -22,14 +23,15 @@ class ArticleControllerTest extends ControllerTest {
 	@Autowired
 	private ArticleService articleService;
 
-	@DisplayName("인터뷰 등록")
+	@DisplayName("인터뷰 등록-권한있음")
 	@Test
-	public void registerArticle() throws Exception {
+	public void registerArticleWithAuthentication() throws Exception {
 	    //given
 		ArticleForm articleForm = ArticleFormFixture.ArticleForm1.article;
 
 		//when
 		final ResultActions actions = mvc.perform(post("/admin/article")
+				.with(user("a").password("pass").roles("ADMIN"))
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(articleForm)))
 			.andDo(print());
@@ -37,6 +39,25 @@ class ArticleControllerTest extends ControllerTest {
 	    //then
 		actions
 			.andExpect(status().isCreated())
+			.andDo(print());
+	}
+
+	@DisplayName("인터뷰 등록-권한없음")
+	@Test
+	public void registerArticleWithoutAuthentication() throws Exception {
+		//given
+		ArticleForm articleForm = ArticleFormFixture.ArticleForm1.article;
+
+		//when
+		final ResultActions actions = mvc.perform(post("/admin/article")
+				.with(user("user1").password("pass").roles("MEMBER"))
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(articleForm)))
+			.andDo(print());
+
+		//then
+		actions
+			.andExpect(status().isForbidden())
 			.andDo(print());
 	}
 
