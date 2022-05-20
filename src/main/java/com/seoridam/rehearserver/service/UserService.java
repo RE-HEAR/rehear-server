@@ -32,7 +32,7 @@ public class UserService {
                 .ventureBefore(dto.isVentureBefore())
                 .job(dto.getJob())
                 .businessCategory(dto.getBusinessCategory())
-                .roles(Collections.singletonList("ROLE_MEMBER"))
+                .roles(Collections.singletonList("ROLE_USER"))
                 .build();
         userRepository.save(user);
     }

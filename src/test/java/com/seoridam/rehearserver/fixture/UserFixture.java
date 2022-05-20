@@ -14,15 +14,15 @@ public class UserFixture {
 
     public static class User1 {
         public static final Long ID = 1L;
-        public static final String NAME = "member1";
-        public static final String EMAIL = "member1@test.com";
+        public static final String NAME = "user1";
+        public static final String EMAIL = "user1@test.com";
         public static final String PASSWORD = "dlafjajdfljnfjdnajkn";
-        public static final String NICKNAME = "member1_nickname";
+        public static final String NICKNAME = "user1_nickname";
         public static final int AGE = 20;
         public static final boolean VENTURE_BEFORE = true;
         public static final JobEnum JOB = STUDENT;
         public static final String BUSINESS_CATEGORY = "스타트업";
-        public static final List<String> ROLES = new ArrayList<>(Collections.singletonList("ROLE_MEMBER"));
+        public static final List<String> ROLES = new ArrayList<>(Collections.singletonList("ROLE_USER"));
 
         public static final User USER = User.builder()
                 .id(ID)
@@ -48,7 +48,7 @@ public class UserFixture {
         public static final boolean VENTURE_BEFORE = false;
         public static final JobEnum JOB = PROFESSIONAL;
         public static final String BUSINESS_CATEGORY = "스타트업";
-        public static final List<String> ROLES = new ArrayList<>(Collections.singletonList("ROLE_MEMBER"));
+        public static final List<String> ROLES = new ArrayList<>(Collections.singletonList("ROLE_USER"));
 
         public static final User USER = User.builder()
                 .id(ID)
