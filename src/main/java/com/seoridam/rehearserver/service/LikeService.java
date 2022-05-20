@@ -4,6 +4,7 @@ import com.seoridam.rehearserver.domain.Interview;
 import com.seoridam.rehearserver.domain.Like;
 import com.seoridam.rehearserver.domain.User;
 import com.seoridam.rehearserver.dto.LikeRequestDto;
+import com.seoridam.rehearserver.global.common.LikeTypeEnum;
 import com.seoridam.rehearserver.repository.InterviewRepository;
 import com.seoridam.rehearserver.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +33,21 @@ public class LikeService {
                 .user(user)
                 .likeType(dto.getLikeType())
                 .build();
-        likeRepository.save(like);
+
+        if(checkIsLikeExist(user.getId(), interview.get().getId())){
+            likeRepository.deleteByUserIdAndInterviewId(user.getId(), interview.get().getId());
+            if(!checkIsLikeTypeEqual(user.getId(), interview.get().getId(), dto.getLikeType()))  //error
+                likeRepository.save(like);
+        }
+        else
+            likeRepository.save(like);
+    }
+
+    private boolean checkIsLikeExist(long userId, long interviewId) {
+        return likeRepository.findByUserIdAndInterviewId(userId, interviewId).isPresent();
+    }
+
+    private boolean checkIsLikeTypeEqual(long userId, long interviewId, LikeTypeEnum likeType) {
+        return likeRepository.findByUserIdAndInterviewId(userId, interviewId).get().getLikeType().equals(likeType);
     }
 }
