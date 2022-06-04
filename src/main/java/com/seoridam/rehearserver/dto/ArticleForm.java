@@ -11,11 +11,11 @@ import lombok.Setter;
 @Builder
 public class ArticleForm {
 	private Integer view;
-	private String photoUrl;
 	private String title;
 	private String subTitle;
 	private String introText;
 	private String bodyText;
 
 	private List<Long> SubCategoryIdList;
+	private List<String> PhotoPathList;
 }
