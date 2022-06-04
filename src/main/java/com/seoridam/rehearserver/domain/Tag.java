@@ -26,8 +26,8 @@ public class Tag {
 	//연관관계 매핑 ===================
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "INTERVIEW_ID")
-	private Interview interview;
+	@JoinColumn(name = "ARTICLE_ID")
+	private Article article;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "SUBCATEGORY_ID")

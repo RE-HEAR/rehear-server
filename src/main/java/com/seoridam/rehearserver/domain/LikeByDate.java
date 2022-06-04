@@ -1,6 +1,6 @@
 package com.seoridam.rehearserver.domain;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,27 +19,24 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class TopLike {
+public class LikeByDate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "TOPLIKE_ID")
+	@Column(name = "LIKE_BY_DATE_ID")
 	private Long id;
 
-	private Integer total;
-	private Integer likeToday;
-	private Integer likePastday;
-	// like_week = total - like_pastday + like_today 로 갱신
-	private Integer likeWeek;
+	private Date date;
+	private Integer count;
 
 	//연관관계 매핑 ===================
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "INTERVIEW_ID")
-	private Interview interview;
+	@JoinColumn(name = "ARTICLE_ID")
+	private Article article;
 
-	protected TopLike() {}
+	protected LikeByDate() {}
 
-	public void setInterview(Interview interview) {
-		this.interview = interview;
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 }

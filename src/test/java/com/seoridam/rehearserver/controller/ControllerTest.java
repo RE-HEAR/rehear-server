@@ -1,5 +1,7 @@
 package com.seoridam.rehearserver.controller;
 
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,6 +31,7 @@ public class ControllerTest {
     @BeforeEach
     public void setUp() {
         this.mvc = MockMvcBuilders.webAppContextSetup(ctx)
+                .apply(springSecurity())
                 .addFilter(new CharacterEncodingFilter("UTF-8", true))
                 .build();
     }

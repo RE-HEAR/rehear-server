@@ -26,12 +26,6 @@ public class SubCategory {
 
 	private String name;
 
-	//연관관계 매핑 ===================
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CATEGORY_ID")
-	private Category category;
-
 	protected SubCategory() {}
 
 }
