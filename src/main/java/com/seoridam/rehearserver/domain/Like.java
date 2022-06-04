@@ -25,8 +25,8 @@ public class Like {
 
     //연관관계 매핑 ===================
     @ManyToOne
-    @JoinColumn(name = "INTERVIEW_ID")
-    private Interview interview;
+    @JoinColumn(name = "ARTICLE_ID")
+    private Article article;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")

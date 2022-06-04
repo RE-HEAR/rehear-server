@@ -8,11 +8,11 @@ import lombok.Getter;
 public class LikeRequestDto {
 
     private LikeTypeEnum likeType;
-    private Long interviewId;
+    private Long articleId;
 
     @Builder
-    public LikeRequestDto(LikeTypeEnum likeType, Long interviewId){
+    public LikeRequestDto(LikeTypeEnum likeType, Long articleId){
         this.likeType = likeType;
-        this.interviewId = interviewId;
+        this.articleId = articleId;
     }
 }
