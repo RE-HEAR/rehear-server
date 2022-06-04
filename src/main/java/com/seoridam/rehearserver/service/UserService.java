@@ -29,10 +29,11 @@ public class UserService {
                 .nickname(dto.getNickname())
                 .name(dto.getName())
                 .age(dto.getAge())
-                .ventureBefore(dto.isVentureBefore())
+                .ventureFlag(dto.isVentureFlag())
+                .ventureYear(dto.getVentureYear())
                 .job(dto.getJob())
                 .businessCategory(dto.getBusinessCategory())
-                .roles(Collections.singletonList("ROLE_MEMBER"))
+                .roles(Collections.singletonList("ROLE_USER"))
                 .build();
         userRepository.save(user);
     }
