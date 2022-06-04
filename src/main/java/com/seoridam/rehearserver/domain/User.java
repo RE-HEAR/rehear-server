@@ -41,7 +41,6 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private Boolean ventureFlag;
 
-    @Column(nullable = false)
     private Integer ventureYear;
 
     @Enumerated(EnumType.STRING)

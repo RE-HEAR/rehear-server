@@ -14,15 +14,16 @@ public class UserFixture {
 
     public static class User1 {
         public static final Long ID = 1L;
-        public static final String NAME = "member1";
-        public static final String EMAIL = "member1@test.com";
+        public static final String NAME = "user1";
+        public static final String EMAIL = "v@test.com";
         public static final String PASSWORD = "dlafjajdfljnfjdnajkn";
-        public static final String NICKNAME = "member1_nickname";
+        public static final String NICKNAME = "user1_nickname";
         public static final int AGE = 20;
-        public static final boolean VENTURE_BEFORE = true;
+        public static final boolean VENTURE_FLAG = true;
+        public static final Integer VENTURE_YEAR =  0;
         public static final JobEnum JOB = STUDENT;
         public static final String BUSINESS_CATEGORY = "스타트업";
-        public static final List<String> ROLES = new ArrayList<>(Collections.singletonList("ROLE_MEMBER"));
+        public static final List<String> ROLES = new ArrayList<>(Collections.singletonList("ROLE_USER"));
 
         public static final User USER = User.builder()
                 .id(ID)
@@ -31,7 +32,8 @@ public class UserFixture {
                 .password(PASSWORD)
                 .nickname(NICKNAME)
                 .age(AGE)
-                .ventureBefore(VENTURE_BEFORE)
+                .ventureFlag(VENTURE_FLAG)
+                .ventureYear(VENTURE_YEAR)
                 .job(JOB)
                 .businessCategory(BUSINESS_CATEGORY)
                 .roles(ROLES)
@@ -40,15 +42,16 @@ public class UserFixture {
 
     public static class User2 {
         public static final Long ID = 2L;
-        public static final String NAME = "member2";
-        public static final String EMAIL = "member2@test.com";
-        public static final String PASSWORD = "member2";
-        public static final String NICKNAME = "member2_nickname";
+        public static final String NAME = "user2";
+        public static final String EMAIL = "user2@test.com";
+        public static final String PASSWORD = "user2";
+        public static final String NICKNAME = "user2_nickname";
         public static final int AGE = 30;
-        public static final boolean VENTURE_BEFORE = false;
+        public static final boolean VENTURE_FLAG = false;
+        public static final Integer VENTURE_YEAR = 1;
         public static final JobEnum JOB = PROFESSIONAL;
         public static final String BUSINESS_CATEGORY = "스타트업";
-        public static final List<String> ROLES = new ArrayList<>(Collections.singletonList("ROLE_MEMBER"));
+        public static final List<String> ROLES = new ArrayList<>(Collections.singletonList("ROLE_USER"));
 
         public static final User USER = User.builder()
                 .id(ID)
@@ -57,7 +60,8 @@ public class UserFixture {
                 .password(PASSWORD)
                 .nickname(NICKNAME)
                 .age(AGE)
-                .ventureBefore(VENTURE_BEFORE)
+                .ventureFlag(VENTURE_FLAG)
+                .ventureYear(VENTURE_YEAR)
                 .job(JOB)
                 .businessCategory(BUSINESS_CATEGORY)
                 .roles(ROLES)
