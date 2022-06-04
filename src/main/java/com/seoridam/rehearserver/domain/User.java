@@ -39,7 +39,10 @@ public class User implements UserDetails {
     private int age;
 
     @Column(nullable = false)
-    private boolean ventureBefore;
+    private Boolean ventureFlag;
+
+    @Column(nullable = false)
+    private Integer ventureYear;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -57,14 +60,15 @@ public class User implements UserDetails {
     }
 
     @Builder
-    public User(Long id, String email, String password, String nickname, String name, int age, boolean ventureBefore, JobEnum job, String businessCategory, List<String> roles){
+    public User(Long id, String email, String password, String nickname, String name, int age, boolean ventureFlag, Integer ventureYear, JobEnum job, String businessCategory, List<String> roles){
         this.id = id;
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.name = name;
         this.age = age;
-        this.ventureBefore = ventureBefore;
+        this.ventureFlag = ventureFlag;
+        this.ventureYear = ventureYear;
         this.job = job;
         this.businessCategory = businessCategory;
         this.roles = roles;
