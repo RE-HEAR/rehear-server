@@ -10,11 +10,11 @@ public class SubCategoryFixture {
 
 	public static class SubCategory2{
 		public static final SubCategory SUBCATEGORY = SubCategory.builder()
-			.id(1L).name("computer").build();
+			.id(2L).name("computer").build();
 	}
 
 	public static class SubCategory3{
 		public static final SubCategory SUBCATEGORY = SubCategory.builder()
-			.id(1L).name("history").build();
+			.id(3L).name("history").build();
 	}
 }
