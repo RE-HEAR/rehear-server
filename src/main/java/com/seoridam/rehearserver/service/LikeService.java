@@ -10,6 +10,7 @@ import com.seoridam.rehearserver.repository.LikeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -34,10 +35,11 @@ public class LikeService {
                 .likeType(dto.getLikeType())
                 .build();
 
-        if(checkIsLikeExist(user.getId(), article.get().getId())){
-            likeRepository.deleteByUserIdAndArticleId(user.getId(), article.get().getId());
-            if(!checkIsLikeTypeEqual(user.getId(), article.get().getId(), dto.getLikeType()))  //error
-                likeRepository.save(like);
+        if(checkIsLikeExist(user.getId(), dto.getArticleId())){
+            if(!checkIsLikeTypeEqual(user.getId(), dto.getArticleId(), dto.getLikeType()))
+                updateLikeType(user.getId(), dto.getArticleId(), dto.getLikeType());
+            else
+                likeRepository.deleteByUserIdAndArticleId(user.getId(), dto.getArticleId());
         }
         else
             likeRepository.save(like);
@@ -49,5 +51,14 @@ public class LikeService {
 
     private boolean checkIsLikeTypeEqual(long userId, long articleId, LikeTypeEnum likeType) {
         return likeRepository.findByUserIdAndArticleId(userId, articleId).get().getLikeType().equals(likeType);
+    }
+
+    @Transactional
+    public void updateLikeType(long userId, long articleId, LikeTypeEnum likeType){
+        Optional<Like> like = likeRepository.findByUserIdAndArticleId(userId, articleId);
+        like.ifPresent(selectLike->{
+            selectLike.setLikeType(likeType);
+            likeRepository.save(selectLike);
+        });
     }
 }
