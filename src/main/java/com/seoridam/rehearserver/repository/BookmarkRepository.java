@@ -12,10 +12,6 @@ import com.seoridam.rehearserver.domain.Bookmark;
 
 @Repository
 public interface BookmarkRepository extends JpaRepository<Bookmark, Long> {
-	//북마크 추가
-	//--
-
-	//게시글 클릭 시 북마크 되어있는지 조회
 	Optional<Bookmark> findByUserIdAndArticleId(long userId, long articleId);
 
 	@Transactional
