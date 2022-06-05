@@ -29,7 +29,6 @@ public class Article {
 	@Builder.Default
 	private LocalDate createDate = LocalDate.now();
 	private Integer view;
-	private String photoUrl;
 	private String title;
 	//소제목
 	private String subTitle;
@@ -44,6 +43,10 @@ public class Article {
 	@JsonIgnore //무한루프 방지
 	@OneToMany(mappedBy = "article")
 	private List<Tag> tagList;
+
+	@JsonIgnore //무한루프 방지
+	@OneToMany(mappedBy = "article")
+	private List<Photo> photoList;
 
 	protected Article(){}
 
