@@ -15,6 +15,7 @@ import com.seoridam.rehearserver.dto.ArticleForm;
 import com.seoridam.rehearserver.domain.SubCategory;
 import com.seoridam.rehearserver.domain.Tag;
 import com.seoridam.rehearserver.dto.ArticleProjection;
+import com.seoridam.rehearserver.dto.ArticleSummaryProjection;
 import com.seoridam.rehearserver.repository.ArticleRepository;
 import com.seoridam.rehearserver.repository.PhotoRepository;
 import com.seoridam.rehearserver.repository.SubCategoryRepository;
@@ -39,18 +40,21 @@ public class ArticleService {
 
 	//article 리스트 목록 조회
 	@Transactional(readOnly = true)
-	public Page<ArticleProjection> getArticleList(PageRequest pageRequest){
-		return articleRepository.findArticleProjectionsBy(pageRequest);
+	public Page<ArticleSummaryProjection> getArticleList(PageRequest pageRequest){
+		return articleRepository.findArticleSummaryProjectionsBy(pageRequest);
 	}
 
 	// article 저장
 	public Long registerArticle(ArticleForm form){
 		Article article = Article.builder()
 			.view(0)
+			.writer(form.getWriter())
 			.title(form.getTitle())
 			.subTitle(form.getSubTitle())
 			.introText(form.getIntroText())
-			.bodyText(form.getBodyText()).build();
+			.bodyText(form.getBodyText())
+			.thumbnail(form.getThumbnail())
+			.build();
 		Article savedArticle = articleRepository.save(article);
 
 		//관련 photo 저장

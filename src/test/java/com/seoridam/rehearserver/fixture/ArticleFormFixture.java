@@ -15,7 +15,7 @@ public class ArticleFormFixture {
 			.introText("test")
 			.bodyText("test")
 			.title("test title")
-			.photoUrl("test url")
+			.thumbnail("test url")
 			.SubCategoryIdList(ids)
 			.build();
 	}

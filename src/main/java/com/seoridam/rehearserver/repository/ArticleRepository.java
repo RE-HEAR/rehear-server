@@ -1,13 +1,12 @@
 package com.seoridam.rehearserver.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.seoridam.rehearserver.domain.Article;
 import com.seoridam.rehearserver.dto.ArticleProjection;
+import com.seoridam.rehearserver.dto.ArticleSummaryProjection;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 	//Projection 기능:
@@ -17,7 +16,10 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 	//article 조회
 	ArticleProjection findArticleProjectionById(Long id);
 
+	//article summary 조회 byId
+	ArticleSummaryProjection findArticleSummaryProjectionById(Long id);
+
 	//article 리스트 페이징 조회
-	Page<ArticleProjection> findArticleProjectionsBy(Pageable pageable);
+	Page<ArticleSummaryProjection> findArticleSummaryProjectionsBy(Pageable pageable);
 
 }

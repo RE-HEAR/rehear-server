@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.seoridam.rehearserver.dto.ArticleForm;
 import com.seoridam.rehearserver.dto.ArticleProjection;
+import com.seoridam.rehearserver.dto.ArticleSummaryProjection;
 import com.seoridam.rehearserver.dto.TagArticleProjection;
 import com.seoridam.rehearserver.global.common.StatusEnum;
 import com.seoridam.rehearserver.global.common.SuccessResponse;
@@ -48,7 +49,7 @@ public class ArticleController {
 	public SuccessResponse getArticleList(@RequestParam("page") Integer page, @RequestParam("size") Integer size){
 
 		PageRequest pageRequest = PageRequest.of(page,size);
-		Page<ArticleProjection> articleList = articleService.getArticleList(pageRequest);
+		Page<ArticleSummaryProjection> articleList = articleService.getArticleList(pageRequest);
 
 		return SuccessResponse.builder()
 			.status(StatusEnum.OK)
@@ -72,7 +73,7 @@ public class ArticleController {
 			.build();
 	}
 
-	@PostMapping("/admin/article")
+	@PostMapping("/users/article")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void registerArticle(@Valid @RequestBody ArticleForm articleForm){
 		articleService.registerArticle(articleForm);

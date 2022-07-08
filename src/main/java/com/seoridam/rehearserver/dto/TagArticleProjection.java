@@ -7,8 +7,9 @@ public interface TagArticleProjection {
 	Long getArticleId();
 	LocalDate getArticleCreateDate();
 	Integer getArticleView();
-	String getArticlePhotoUrl();
+	String getArticleThumbnail();
 	String getArticleTitle();
 	String getArticleIntroText();
+	String getArticleWriter();
 	String getSubCategoryName();
 }
