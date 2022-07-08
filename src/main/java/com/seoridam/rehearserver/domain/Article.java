@@ -29,6 +29,9 @@ public class Article {
 	@Builder.Default
 	private LocalDate createDate = LocalDate.now();
 	private Integer view;
+	//작성자
+	private String writer;
+	//제목
 	private String title;
 	//소제목
 	private String subTitle;
@@ -37,6 +40,8 @@ public class Article {
 	//본문
 	@Column(columnDefinition = "TEXT")
 	private String bodyText;
+	//썸네일 사진 저장 url
+	private String thumbnail;
 
 	//연관관계 매핑 ===================
 
@@ -46,7 +51,7 @@ public class Article {
 
 	@JsonIgnore //무한루프 방지
 	@OneToMany(mappedBy = "article")
-	private List<Photo> photoList;
+	private List<Photo> photoList; //본문 사진
 
 	protected Article(){}
 

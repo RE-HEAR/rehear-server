@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.seoridam.rehearserver.domain.User;
-import com.seoridam.rehearserver.dto.ArticleProjection;
+import com.seoridam.rehearserver.dto.ArticleSummaryProjection;
 import com.seoridam.rehearserver.service.BookmarkService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,7 @@ public class BookmarkController {
 
 	// 유저가 한 북마크 전체 조회
 	@GetMapping("/users/bookmark")
-	public List<ArticleProjection> getBookmark(@AuthenticationPrincipal User user){
+	public List<ArticleSummaryProjection> getBookmark(@AuthenticationPrincipal User user){
 		return bookmarkService.getArticleListByUserId(user.getId());
 	}
 

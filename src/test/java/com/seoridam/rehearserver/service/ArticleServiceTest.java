@@ -61,7 +61,7 @@ public class ArticleServiceTest {
 		//when
 		articleService.getArticleList(any());
 		//then
-		then(articleRepository).should(times(1)).findArticleProjectionsBy(any());
+		then(articleRepository).should(times(1)).findArticleSummaryProjectionsBy(any());
 	}
 
 }
