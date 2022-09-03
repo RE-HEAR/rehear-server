@@ -37,30 +37,28 @@ public class ArticleService {
 		return articleRepository.findArticleProjectionById(id);
 	}
 
-	//article 리스트 목록 조회
+	// article 리스트 목록 조회
 	@Transactional(readOnly = true)
-	public Page<ArticleProjection> getArticleList(PageRequest pageRequest){
+	public Page<ArticleProjection> getArticleList(PageRequest pageRequest) {
 		return articleRepository.findArticleProjectionsBy(pageRequest);
 	}
 
 	// article 저장
-	public Long registerArticle(ArticleForm form){
+	public Long registerArticle(ArticleForm form) {
 		Article article = Article.builder()
-			.view(0)
-			.title(form.getTitle())
-			.subTitle(form.getSubTitle())
-			.introText(form.getIntroText())
-			.bodyText(form.getBodyText()).build();
+				.view(0)
+				.title(form.getTitle())
+				.bodyText(form.getBodyText()).build();
 		Article savedArticle = articleRepository.save(article);
 
-		//관련 photo 저장
+		// 관련 photo 저장
 		List<String> pathList = form.getPhotoPathList();
 		for (String path : pathList) {
 			Photo photo = Photo.builder().article(savedArticle).path(path).build();
 			photoRepository.save(photo);
 		}
 
-		//관련 tag 저장
+		// 관련 tag 저장
 		List<Long> idList = form.getSubCategoryIdList();
 		for (Long subId : idList) {
 			Optional<SubCategory> sub = subCategoryRepository.findById(subId);

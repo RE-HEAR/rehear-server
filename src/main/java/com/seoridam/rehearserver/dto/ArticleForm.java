@@ -12,8 +12,6 @@ import lombok.Setter;
 public class ArticleForm {
 	private Integer view;
 	private String title;
-	private String subTitle;
-	private String introText;
 	private String bodyText;
 
 	private List<Long> SubCategoryIdList;

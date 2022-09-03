@@ -11,12 +11,10 @@ public class ArticleFormFixture {
 
 		public static List<Long> ids = Arrays.asList(1L, 3L);
 		public static final ArticleForm article = ArticleForm.builder()
-			.view(0)
-			.introText("test")
-			.bodyText("test")
-			.title("test title")
-			.photoUrl("test url")
-			.SubCategoryIdList(ids)
-			.build();
+				.view(0)
+				.bodyText("test")
+				.title("test title")
+				.SubCategoryIdList(ids)
+				.build();
 	}
 }

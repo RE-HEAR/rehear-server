@@ -5,11 +5,15 @@ import java.util.List;
 
 public interface ArticleProjection {
 	Long getId();
+
 	LocalDate getCreateDate();
+
 	Integer getView();
+
 	String getTitle();
-	String getIntroText();
+
 	List<TagInfo> getTagList();
+
 	interface TagInfo {
 		SubCategoryInfo getSubCategory();
 
@@ -17,7 +21,9 @@ public interface ArticleProjection {
 			String getName();
 		}
 	}
+
 	List<PhotoInfo> getPhotoList();
+
 	interface PhotoInfo {
 		String getPath();
 	}

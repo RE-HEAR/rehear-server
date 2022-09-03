@@ -26,71 +26,70 @@ class ArticleControllerTest extends ControllerTest {
 	@DisplayName("인터뷰 등록-권한있음")
 	@Test
 	public void registerArticleWithAuthentication() throws Exception {
-	    //given
+		// given
 		ArticleForm articleForm = ArticleFormFixture.ArticleForm1.article;
 
-		//when
+		// when
 		final ResultActions actions = mvc.perform(post("/admin/article")
 				.with(user("a").password("pass").roles("ADMIN"))
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(articleForm)))
-			.andDo(print());
+				.andDo(print());
 
-	    //then
+		// then
 		actions
-			.andExpect(status().isCreated())
-			.andDo(print());
+				.andExpect(status().isCreated())
+				.andDo(print());
 	}
 
 	@DisplayName("인터뷰 등록-권한없음")
 	@Test
 	public void registerArticleWithoutAuthentication() throws Exception {
-		//given
+		// given
 		ArticleForm articleForm = ArticleFormFixture.ArticleForm1.article;
 
-		//when
+		// when
 		final ResultActions actions = mvc.perform(post("/admin/article")
 				.with(user("user1").password("pass").roles("MEMBER"))
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(articleForm)))
-			.andDo(print());
+				.andDo(print());
 
-		//then
+		// then
 		actions
-			.andExpect(status().isForbidden())
-			.andDo(print());
+				.andExpect(status().isForbidden())
+				.andDo(print());
 	}
 
 	@DisplayName("인터뷰 내용 조회")
 	@Test
 	void getArticle() throws Exception {
-		//given
+		// given
 		ArticleForm articleForm = ArticleFormFixture.ArticleForm1.article;
 		Long id = articleService.registerArticle(articleForm);
 
 		ResultActions actions = mvc.perform(get("/article/{id}", id)
-			.contentType(MediaType.APPLICATION_JSON)).andDo(print());
+				.contentType(MediaType.APPLICATION_JSON)).andDo(print());
 
 		actions.andExpect(status().isOk())
-			.andExpect(jsonPath("data.title").value(articleForm.getTitle()))
-			.andExpect(jsonPath("data.intro_text").value(articleForm.getIntroText()));
+				.andExpect(jsonPath("data.title").value(articleForm.getTitle()));
 	}
 
 	@DisplayName("인터뷰 목록 리스트 조회 - DB에 article row가 5가 이상 있다고 가정")
 	@Test
 	void getArticleList() throws Exception {
 		ResultActions actions = mvc.perform(get("/article/list/?page=0&size=5")
-			.contentType(MediaType.APPLICATION_JSON)).andDo(print());
+				.contentType(MediaType.APPLICATION_JSON)).andDo(print());
 
 		actions
-			.andExpect(jsonPath("data.content.length()").value(5));
+				.andExpect(jsonPath("data.content.length()").value(5));
 	}
 
 	@DisplayName("인터뷰 목록 리스트 조회 - by subcategoryId")
 	@Test
 	void getArticleListBySubcategory() throws Exception {
 		ResultActions actions = mvc.perform(get("/article/list/subcategory/1/?page=0&size=5")
-			.contentType(MediaType.APPLICATION_JSON)).andDo(print());
-		//db row와 비교 - 일치함
+				.contentType(MediaType.APPLICATION_JSON)).andDo(print());
+		// db row와 비교 - 일치함
 	}
 }
