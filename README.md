@@ -60,7 +60,6 @@
 ## 📎 화면설계
 ▶️ [프론트 깃허브 방문하기](https://github.com/RE-HEAR/rehear-frontend) <br/>
 
-▶️ [프로토타입 보러가기](https://github.com/RE-HEAR/rehear-server/wiki/5.-Prototype)
 
 <br/>
 
@@ -68,10 +67,6 @@
 ▶️ [API 문서 보러가기](https://github.com/RE-HEAR/rehear-server/wiki/1.-API) <br/>
 
 ▶️ [플로우차트 보러가기](https://github.com/RE-HEAR/rehear-server/wiki/6.-flow-chart)
-
-▶️ [트러블슈팅 보러가기](https://github.com/RE-HEAR/rehear-server/wiki/3.-Trouble-Shooting)
-
-▶️ [성능 보러가기](https://github.com/RE-HEAR/rehear-server/wiki/4.-Performance)
 
 
 <br/>
