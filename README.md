@@ -66,13 +66,11 @@
 ## 🎈 문서
 ▶️ [API 문서 보러가기](https://github.com/RE-HEAR/rehear-server/wiki/1.-API) <br/>
 
-▶️ [플로우차트 보러가기](https://github.com/RE-HEAR/rehear-server/wiki/6.-flow-chart)
-
 
 <br/>
 
 ## 🧩 컨벤션 및 규칙
-▶️ [Git flow와 Convention 보러가기](https://github.com/RE-HEAR/rehear-server/wiki/7.-Rule-&-Convention)
+▶️ [Git flow와 Convention 보러가기](https://github.com/RE-HEAR/rehear-server/wiki/4.-Rule-&-Convention)
 
 
 
